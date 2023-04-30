@@ -1,0 +1,30 @@
+name: Cppcheck 
+run-name: Cppcheck is testing your code for static failures
+on: [push]
+permissions: write-all
+jobs:
+  Cppcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+  
+      - name: Install cppcheck 
+        run: |
+          sudo apt install cppcheck
+          
+      - name: Install firmware-best-practice-checker 
+        run: |
+          git clone https://github.com/insper-education/firmware-best-practice-checker
+          python -m pip install --upgrade pip
+          pip install tabulate 
+          
+      - name: run cppcheck
+        run: |
+          cppcheck -iASF -ioled --enable=all --suppress=missingIncludeSystem --suppress=integerOverflow --suppress=unmatchedSuppression --error-exitcode=2 --dump .
+      
+      - name: run firmware-best-practice-cheker  
+        run: |
+          python3 ./firmware-best-practice-checker/check.py . 
