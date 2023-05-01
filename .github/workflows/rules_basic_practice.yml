@@ -26,5 +26,6 @@ jobs:
         continue-on-error: true
 
       - name: run firmware-best-practice-cheker
+        continue-on-error: false
         run: |
           python3 ./firmware-best-practice-checker/check.py rules_basic_practice.c.dump

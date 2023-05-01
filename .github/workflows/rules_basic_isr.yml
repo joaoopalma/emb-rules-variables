@@ -1,8 +1,8 @@
-name: rules_basic_isr
+name: rules_basic_variables
 run-name: Checking rules basic variables
 on: [push]
 jobs:
-  rules_basic_isr:
+  rules_basic_variable:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,10 +23,10 @@ jobs:
           
       - name: run cppcheck
         run: |
-          cppcheck -iASF -ioled --enable=all --suppress=missingIncludeSystem --suppress=integerOverflow --suppress=unmatchedSuppression --error-exitcode=2 --dump rules_basic_isr.c
+          cppcheck -iASF -ioled --enable=all --suppress=missingIncludeSystem --suppress=integerOverflow --suppress=unmatchedSuppression --error-exitcode=2 --dump rules_basic_variable.c
         continue-on-error: true
 
       - name: run firmware-best-practice-cheker
         continue-on-error: false
         run: |
-          python3 ./firmware-best-practice-checker/check.py rules_basic_isr.c.dump
+          python3 ./firmware-best-practice-checker/check.py rules_basic_variable.c.dump
