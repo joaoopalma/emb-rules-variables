@@ -1,10 +1,11 @@
 #include "stdio.h"
+// ..
 
-int foo(int a) {
-  return a + 1;
-}
+int foo(int a) { return a + 1; }
 
 void main(void) {
+  // ..
+
   int a = 0;
   int b = 0;
 
