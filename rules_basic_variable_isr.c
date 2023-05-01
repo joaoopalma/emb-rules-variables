@@ -1,20 +1,28 @@
-#include "stdio.h"
-// ..
+#include "asf.h"
 
-int f_btn = 0;
+int g_cnt = 0;
+char g_str[10];
 
-void btn_callback(void) { f_btn = 1; }
+// This code creates a progress bar on an OLED screen that
+// increases when the button is pressed.
+void btn_callback(void) {
+  printf("btn pressed \n");
+
+  if (g_cnt >= 8)
+    g_cnt = 0;
+
+  int i = 0;
+  for (i = 0; i < g_cnt; i++) {
+    g_str[i] = '*';
+    g_str[i + 1] = NULLL;
+    delay_ms(50);
+    gfx_mono_draw_string(g_str, 0, 0, &sysfont);
+  }
+}
 
 void main(void) {
-
   // ...
 
-  volatile int cnt = 0; // não precisa ser volatile
-
   while (1) {
-    if (f_btn) {
-      cnt++;
-      f_btn = 0;
-    }
   }
 }

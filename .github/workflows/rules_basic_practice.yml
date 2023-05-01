@@ -22,10 +22,8 @@ jobs:
           
       - name: run cppcheck
         run: |
-          cppcheck -iASF -ioled --enable=all --suppress=missingIncludeSystem --suppress=integerOverflow --suppress=unmatchedSuppression --error-exitcode=2 --dump rules_basic_practice.c
-        continue-on-error: true
+          cppcheck -iASF -ioled --enable=all --suppress=missingIncludeSystem --suppress=integerOverflow --suppress=unmatchedSuppression --dump rules_basic_practice.c
 
       - name: run firmware-best-practice-cheker
-        continue-on-error: false
         run: |
           python3 ./firmware-best-practice-checker/check.py rules_basic_practice.c.dump
