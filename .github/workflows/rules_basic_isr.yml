@@ -11,15 +11,14 @@ jobs:
           python-version: '3.10' 
   
       - name: Install cppcheck
-
         run: |
           sudo apt install cppcheck
           
       - name: Install firmware-best-practice-checker
         run: |
-          git clone https://github.com/insper-education/firmware-best-practice-checker
+          git clone https://github.com/insper-education/firmware-best-practice-checker checker
           python -m pip install --upgrade pip
-          pip install tabulate 
+          pip -r checker/requirements.txt
           
       - name: run cppcheck
         run: |
@@ -27,4 +26,4 @@ jobs:
 
       - name: run firmware-best-practice-cheker
         run: |
-          python3 ./firmware-best-practice-checker/check.py rules_basic_isr.c.dump
+          python3 checker/check.py rules_basic_isr.c.dump
