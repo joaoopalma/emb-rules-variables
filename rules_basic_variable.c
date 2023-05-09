@@ -2,18 +2,19 @@
 
 // ..
 
-int a = 0;
-int b = 0;
 
-void foo(void) {
-  a = a + 1;
+
+int foo(int a) {
+  return(a + 1);
 }
 
 void main(void) {
   // ..
+  int a = 0;
+  int b = 0;
 
   while (1) {
-    foo();
+   a = foo(a);
 
     if (a > 5) {
       b = 1;
