@@ -2,22 +2,19 @@
 
 // ..
 
+int a = 0; // var global
+int b = 0; // var global
 
-
-int foo(int a) {
-  return(a + 1);
+void foo(void) {
+    a = a + 1; // acessa variavel global
 }
 
 void main(void) {
-  // ..
-  int a = 0;
-  int b = 0;
-
-  while (1) {
-   a = foo(a);
-
-    if (a > 5) {
-      b = 1;
+    while (1) {
+        foo();
+        
+        if (a > 5) {
+            b = 1;
+        }
     }
-  }
 }
